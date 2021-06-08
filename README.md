@@ -1,19 +1,29 @@
 ## Trabalhando com Objetos Dicas
+
 Document Object Model - É o modelo de objetos que um document HTML é escrito, por hierarquia.
 
 objeto.método("seletor").propriedade/atributo
 
+Um objeto é uma variavel que estancia/representa uma class
+
 ### Trabalhando com o Objeto Document
 
-```document.getElementById("pega_id")```
+~~~Javascript
+document.getElementById("pega_id")
+~~~
 Pega o elemento que tem o id
-
+~~~Javascript
+~~~
 
 ### Trabalhando com getElementoById("")
-```document.getElementoById("id")```
+~~~Javascript
+document.getElementoById("id")
+~~~
 getElementoById é um metodo do objeto document, quando terminar com ("") sabemos que é um metodo
 
-```document.getElementoById("id").value```
+~~~Javascript
+document.getElementoById("id").value
+~~~
 value é uma propriedade do metodo que esta dentro do Objeto, quando terminar sem ("") sabemos que é uma propridade.
 Podemos pegar ou atribuir.
 
@@ -21,13 +31,20 @@ Podemos pegar ou atribuir.
 
 ### Trabalhando com querySelector("")
 
-```document.querySelector("#id [name=exemplo] .Class")```
+~~~Javascript
+document.querySelector("#id [name=exemplo] .class")
+~~~
+
 Faz uma pesquisa pelo documento e retorna onde localizar #ID's, Atributos ou .Classes
 
-```document.querySelectorAll("#id [name]")```
+~~~Javascript
+document.querySelectorAll("#id [name]")
+~~~
 Caso queria buscar todos os elementos, como form onde todos tem um atributo name. utilizamos o querySelectorAll
+~~~Javascript
+document.querySelectorAll("#id [name=exemplo]:checked")
+~~~
 
-```document.querySelectorAll("#id [name=exemplo]:checked")```
 Caso queria busca o elemento que foi marcado no form.
 
 ### Trabalhando com class("")
@@ -37,15 +54,14 @@ Depois de criar a `class Exemplo{}`, passar para o metodo `constructor(name ,ema
 Estanciamos a class com `var objectExemple new exemple(info_qo_constructor_recebe)`
 
 Exemplo :
-```
-class Exemplo {
+~~~Javascript
+class ExemploUser {
     constructor(name ,email, pass)
     this.name = name;
     this.email = email
     this.pass = pass
 }
-
-var objectExemple = new Exemplo(name, email, pass)
-```
+var objectExemple = new ExemploUser(name, email, pass)
+~~~
 
 `objectExemple` vai receber as informações que foram tratadas e passadas para o `this.` dentro da class.
