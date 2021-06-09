@@ -12,8 +12,6 @@ Um objeto é uma variavel que estancia/representa uma class
 document.getElementById("pega_id")
 ~~~
 Pega o elemento que tem o id
-~~~Javascript
-~~~
 
 ### getElementoById("")
 ~~~Javascript
@@ -57,8 +55,8 @@ Exemplo :
 class ExemploUser {
     constructor(name ,email, pass)
     this.name = name;
-    this.email = email
-    this.pass = pass
+    this.email = email;
+    this.pass = pass;
 }
 var objectExemple = new ExemploUser(name, email, pass)
 ~~~

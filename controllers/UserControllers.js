@@ -54,9 +54,13 @@ class UserController {
 
         };
 
-        fileReader.readAsDataURL(file);
-        /*Inicia a leitura do conteúdo do Blob especificado, uma vez finalizado, o 
-        atributo result conterá um data: URL representando os dados do arquivo. */
+        if(file){
+            fileReader.readAsDataURL(file);
+            /*Inicia a leitura do conteúdo do Blob especificado, uma vez finalizado, o 
+            atributo result conterá um data: URL representando os dados do arquivo. */    
+        }else{
+            resolve('dist/img/boxed-bg.jpg');
+        }
 
 
         });
@@ -72,9 +76,19 @@ class UserController {
         [...this.formEl.elements].forEach(function(field, index){
 
             if(field.name == "gender") {
+
+                if(field.checked){
+                    user[field.name] = field.value;
+                }
+                
+            }else if(field.name =='admin'){
+
+                user[field.name] = field.checked
+
+            }else{
+
                 user[field.name] = field.value;
-            } else{
-                user[field.name] = field.value;
+
             }
     
         });
@@ -94,13 +108,13 @@ class UserController {
     addLine(dataUser){
     
         console.log(dataUser)
-            
-            this.tableEl.innerHTML =`
+            let tr =  document.createElement('tr')
+            tr.innerHTML =`
                 <tr>
                     <td><img src="${dataUser.photo}" alt="User Image" class="img-circle img-sm"></td>
                     <td>${dataUser.name}</td>
                     <td>${dataUser.email}</td>
-                    <td>${dataUser.admin}</td>
+                    <td>${(dataUser.admin) ? 'Sim' : 'Não'}</td>
                     <td>${dataUser.birth}</td>
                     <td>
                         <button type="button" class="btn btn-primary btn-xs btn-flat">Editar</button>
@@ -108,6 +122,7 @@ class UserController {
                     </td>
                 </tr>
             `
+            this.tableEl.appendChild(tr)
     } // addline
 
 }
