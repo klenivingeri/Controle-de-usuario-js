@@ -10,15 +10,47 @@ class UserController {
     onSubmit() {
         this.formEl.addEventListener('submit', event => {
             event.preventDefault()
-            this.addLine(this.getValues());
+
+            let values = this.getValues();
+
+            this.getPhoto((content)=>{
+
+                values.photo = content;
+                this.addLine(values);
+
+            });
+
         });
+
     } //onSubmit
 
+    getPhoto(callback){
+        let fileReader = new FileReader();
+
+        let elements = [...this.formEl.elements].filter(item =>{
+
+            if(item.name === 'photo'){
+                return item;
+            }
+
+        });
+
+        let file = elements[0].files[0];
+        //console.log(elements[0].files[0])
+
+        fileReader.onload = ()=>{
+
+            callback(fileReader.result)
+
+        };
+
+        fileReader.readAsDataURL(file);
+
+    } //getValues
 
     getValues(){
-        console.log(typeof(this.formEl.elements))
         let user = {};
-        /*this.formEl.elements é uma coleção/class e dentro dela existe um erray
+        /*typeof(this.formEl.elements) //objeto, é uma coleção/class e dentro dela existe um erray
         utilizamos o ... spread para separar e colocar dentro do array[]
         ficando assim [...this.formEl.elements] onde o forEach consegu atuar
         */
@@ -51,7 +83,7 @@ class UserController {
             
             this.tableEl.innerHTML =`
                 <tr>
-                    <td><img src="dist/img/user1-128x128.jpg" alt="User Image" class="img-circle img-sm"></td>
+                    <td><img src="${dataUser.photo}" alt="User Image" class="img-circle img-sm"></td>
                     <td>${dataUser.name}</td>
                     <td>${dataUser.email}</td>
                     <td>${dataUser.admin}</td>
@@ -62,6 +94,6 @@ class UserController {
                     </td>
                 </tr>
             `
-        }// addline
+    } // addline
 
 }
