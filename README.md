@@ -1,4 +1,4 @@
-## Trabalhando com Objetos Dicas
+## Objetos
 
 Document Object Model - É o modelo de objetos que um document HTML é escrito, por hierarquia.
 
@@ -6,7 +6,7 @@ objeto.método("seletor").propriedade/atributo
 
 Um objeto é uma variavel que estancia/representa uma class
 
-### Trabalhando com o Objeto Document
+### Objeto Document
 
 ~~~Javascript
 document.getElementById("pega_id")
@@ -15,7 +15,7 @@ Pega o elemento que tem o id
 ~~~Javascript
 ~~~
 
-### Trabalhando com getElementoById("")
+### getElementoById("")
 ~~~Javascript
 document.getElementoById("id")
 ~~~
@@ -28,8 +28,7 @@ value é uma propriedade do metodo que esta dentro do Objeto, quando terminar se
 Podemos pegar ou atribuir.
 
 
-
-### Trabalhando com querySelector("")
+### querySelector("")
 
 ~~~Javascript
 document.querySelector("#id [name=exemplo] .class")
@@ -65,3 +64,23 @@ var objectExemple = new ExemploUser(name, email, pass)
 ~~~
 
 `objectExemple` vai receber as informações que foram tratadas e passadas para o `this.` dentro da class.
+
+
+### FileReader API
+ Mais informações sobre [FileReader](https://developer.mozilla.org/pt-BR/docs/Web/API/FileReader)
+~~~Javascript
+    return new Promise((resolve,reject)=>{
+        let fileReader = new FileReader();
+
+        let file = Blob_objeto_do_arquivo
+
+        fileReader.onload = ()=>{
+            resolve(fileReader.result) //base64
+        };
+        fileReader.onerror = (e)=>{
+            reject(e) //event error
+        };
+
+        fileReader.readAsDataURL(file);
+    } 
+~~~

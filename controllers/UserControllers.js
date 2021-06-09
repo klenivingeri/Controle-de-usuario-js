@@ -13,18 +13,23 @@ class UserController {
 
             let values = this.getValues();
 
-            this.getPhoto((content)=>{
-
-                values.photo = content;
-                this.addLine(values);
-
-            });
+            this.getPhoto().then(
+                (content) => {
+                    values.photo = content;
+                    this.addLine(values);
+                },
+                (e) => {
+                    console.log(e)
+                }
+            );
 
         });
 
     } //onSubmit
 
-    getPhoto(callback){
+    getPhoto(){
+        return new Promise((resolve,reject)=>{
+
         let fileReader = new FileReader();
 
         let elements = [...this.formEl.elements].filter(item =>{
@@ -36,23 +41,32 @@ class UserController {
         });
 
         let file = elements[0].files[0];
-        //console.log(elements[0].files[0])
+        //file recebe um objeto Blob, representação de um objeto do tipo arquivo
 
         fileReader.onload = ()=>{
 
-            callback(fileReader.result)
+            resolve(fileReader.result);
+
+        };
+        fileReader.onerror = (e)=>{
+
+            reject(e);
 
         };
 
         fileReader.readAsDataURL(file);
+        /*Inicia a leitura do conteúdo do Blob especificado, uma vez finalizado, o 
+        atributo result conterá um data: URL representando os dados do arquivo. */
 
-    } //getValues
+
+        });
+    } //getPhoto
 
     getValues(){
         let user = {};
-        /*typeof(this.formEl.elements) //objeto, é uma coleção/class e dentro dela existe um erray
-        utilizamos o ... spread para separar e colocar dentro do array[]
-        ficando assim [...this.formEl.elements] onde o forEach consegu atuar
+        /*typeof(this.formEl.elements) //objeto, é uma coleção/class e dentro dela 
+        existe um erray utilizamos o ... spread para separar e colocar dentro do array[]
+        ficando assim [...this.formEl.elements] onde o forEach consegue atuar
         */
 
         [...this.formEl.elements].forEach(function(field, index){
