@@ -18,12 +18,17 @@ class UserController {
 
             let values = this.getValues();
 
+            if(!values) {
+                btn.disabled = false;
+                return false
+            }
+            
             this.getPhoto().then(
                 (content) => {
                     values.photo = content;
                     this.addLine(values);
                     this.formEl.reset();
-                    btn.disabled = false;
+                    btn.disabled = false;  
                 },
                 (e) => {
                     console.log(e)
@@ -76,18 +81,22 @@ class UserController {
     getValues(){
         let user = {};
         let isValid = true;
-        /*typeof(this.formEl.elements) //objeto, é uma coleção/class e dentro dela 
+
+        /*
+        typeof(this.formEl.elements) //objeto, é uma coleção/class e dentro dela 
         existe um erray utilizamos o ... spread para separar e colocar dentro do array[]
         ficando assim [...this.formEl.elements] onde o forEach consegue atuar
         */
-
         [...this.formEl.elements].forEach(function(field, index){
 
             if(['name','email','password'].indexOf(field.name) > -1  && !field.value){
                 
                 field.parentElement.classList.add('has-error');
                 isValid = false
+      
             }
+
+            if(isValid) field.parentElement.classList.remove('has-error');
 
             if(field.name == "gender") {
 
@@ -127,21 +136,51 @@ class UserController {
     addLine(dataUser){
     
         //console.log(dataUser)
-            let tr =  document.createElement('tr')
-            tr.innerHTML =`
-                <tr>
-                    <td><img src="${dataUser.photo}" alt="User Image" class="img-circle img-sm"></td>
-                    <td>${dataUser.name}</td>
-                    <td>${dataUser.email}</td>
-                    <td>${(dataUser.admin) ? 'Sim' : 'Não'}</td>
-                    <td>${Utils.dateFormat(dataUser.register)}</td>
-                    <td>
-                        <button type="button" class="btn btn-primary btn-xs btn-flat">Editar</button>
-                        <button type="button" class="btn btn-danger btn-xs btn-flat">Excluir</button>
-                    </td>
-                </tr>
-            `
-            this.tableEl.appendChild(tr)
+        let tr =  document.createElement('tr')
+
+        tr.dataset.user = JSON.stringify(dataUser)
+
+        tr.innerHTML =`
+            <tr>
+                <td><img src="${dataUser.photo}" alt="User Image" class="img-circle img-sm"></td>
+                <td>${dataUser.name}</td>
+                <td>${dataUser.email}</td>
+                <td>${(dataUser.admin) ? 'Sim' : 'Não'}</td>
+                <td>${Utils.dateFormat(dataUser.register)}</td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-xs btn-flat">Editar</button>
+                    <button type="button" class="btn btn-danger btn-xs btn-flat">Excluir</button>
+                </td>
+            </tr>
+        `
+        this.tableEl.appendChild(tr)
+
+        this.updateCount();
+
     } // addline
+
+    updateCount() {
+
+        let numberUsers = 0;
+        let numberAdmin = 0;
+
+        console.dir(this.tableEl);
+
+        [...this.tableEl.children].forEach(tr =>{
+            numberUsers++
+            
+            
+            let user = JSON.parse(tr.dataset.user);
+            console.log(user)
+
+            if(user._admin){
+                numberAdmin++
+            }
+        })
+
+
+        document.getElementById('number-users').innerHTML =  numberUsers
+        document.getElementById('number-admin').innerHTML =  numberAdmin
+    } // updateCount
 
 }

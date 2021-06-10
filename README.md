@@ -82,3 +82,19 @@ var objectExemple = new ExemploUser(name, email, pass)
         fileReader.readAsDataURL(file);
     } 
 ~~~
+
+### Dataset API e JSON
+~~~Javascript
+ gerDataset(dataUser){ /* Recebemos um objeto */
+       
+        let tr =  document.getElementById('tr-user')
+        /* Pegando o elemento tr para inserir o dataset */
+
+        /* Dataset só aceita string , por isso usamos o JSON.stringify() para converter o objeto em string*/
+        tr.dataset.user = JSON.stringify(dataUser)
+        /* Recebe a string dentro da variavel user*/
+        
+        /*  Depois podemos recuperar e converter o objeto usando JSON.parse() */  
+        let trUser = JSON.parse(tr.dataset.user))
+}
+~~~
