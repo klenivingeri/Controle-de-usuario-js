@@ -75,12 +75,19 @@ class UserController {
 
     getValues(){
         let user = {};
+        let isValid = true;
         /*typeof(this.formEl.elements) //objeto, é uma coleção/class e dentro dela 
         existe um erray utilizamos o ... spread para separar e colocar dentro do array[]
         ficando assim [...this.formEl.elements] onde o forEach consegue atuar
         */
 
         [...this.formEl.elements].forEach(function(field, index){
+
+            if(['name','email','password'].indexOf(field.name) > -1  && !field.value){
+                
+                field.parentElement.classList.add('has-error');
+                isValid = false
+            }
 
             if(field.name == "gender") {
 
@@ -99,6 +106,11 @@ class UserController {
             }
     
         });
+
+        if(!isValid){
+            return false
+        }
+
         return new User(
             user.name,
             user.gender,
@@ -114,7 +126,7 @@ class UserController {
 
     addLine(dataUser){
     
-        console.log(dataUser)
+        //console.log(dataUser)
             let tr =  document.createElement('tr')
             tr.innerHTML =`
                 <tr>
