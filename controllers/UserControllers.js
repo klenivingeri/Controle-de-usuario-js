@@ -172,15 +172,31 @@ class UserController {
                 
 
                 if(field){ // se existir o campo, pq nem todos os atributos da class tem campo
-                    if(field.type == 'file') continue; //evitar erro como register
-                    field.value = json[name];
+                    
+                    switch(field.type){
+                        case 'file':
+                            continue; //evitar erro com o register que não existe no form
+                            break;
+
+                        case 'radio':
+                            
+                            field = form.querySelector(`[name=${name.replace("_","")}][value=${json[name]}]`)
+                            field.checked = true;
+                            break;
+
+                        case 'checkbox':
+                            field.checked = json[name];
+                            break;
+                        
+                        default:
+                            field.value = json[name];
+                    }
+                    
                 }
             }
 
             this.showPanelCreate();
         })
-
-
 
         this.tableEl.appendChild(tr)
 
