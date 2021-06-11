@@ -95,7 +95,7 @@ class UserController {
         existe um erray utilizamos o ... spread para separar e colocar dentro do array[]
         ficando assim [...this.formEl.elements] onde o forEach consegue atuar
         */
-        [...this.formEl.elements].forEach(function(field, index){
+        [...this.formEl.elements].forEach(function(field, index){ //Collection
 
             if(['name','email','password'].indexOf(field.name) > -1  && !field.value){
                 
@@ -164,6 +164,19 @@ class UserController {
 
         tr.querySelector(".btn-edit").addEventListener('click', e=>{
 
+            let json = JSON.parse(tr.dataset.user) //objeto
+            let form =  document.getElementById('box-user-update')
+            for( let name in json ) {
+                let field = form.querySelector("[name=" + name.replace("_","") + "]")
+                
+                
+
+                if(field){ // se existir o campo, pq nem todos os atributos da class tem campo
+                    if(field.type == 'file') continue; //evitar erro como register
+                    field.value = json[name];
+                }
+            }
+
             this.showPanelCreate();
         })
 
@@ -182,7 +195,7 @@ class UserController {
 
         // console.dir(this.tableEl);
 
-        [...this.tableEl.children].forEach(tr =>{
+        [...this.tableEl.children].forEach(tr =>{ //Collection
             numberUsers++
             
             
