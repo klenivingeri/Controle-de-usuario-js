@@ -14,6 +14,7 @@ document.getElementById("pega_id")
 Pega o elemento que tem o id
 
 ### getElementoById("")
+
 ~~~Javascript
 document.getElementoById("id")
 ~~~
@@ -37,7 +38,9 @@ Faz uma pesquisa pelo documento e retorna onde localizar #ID's, Atributos ou .Cl
 ~~~Javascript
 document.querySelectorAll("#id [name]")
 ~~~
+
 Caso queria buscar todos os elementos, como form onde todos tem um atributo name. utilizamos o querySelectorAll
+
 ~~~Javascript
 document.querySelectorAll("#id [name=exemplo]:checked")
 ~~~
