@@ -23,7 +23,8 @@ getElementoById é um metodo do objeto document, quando terminar com ("") sabemo
 ~~~Javascript
 document.getElementoById("id").value
 ~~~
-value é uma propriedade do metodo que esta dentro do Objeto, quando terminar sem ("") sabemos que é uma propridade.
+
+`value` é uma propriedade do metodo que esta dentro do Objeto, quando terminar sem ("") sabemos que é uma propridade.
 Podemos pegar ou atribuir.
 
 
