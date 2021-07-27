@@ -6,14 +6,14 @@ objeto.método("seletor").propriedade/atributo
 
 Um objeto é uma variavel que estancia/representa uma class
 
-#### Objeto Document
+## Objeto Document
 
 ~~~Javascript
 document.getElementById("pega_id")
 ~~~
 Pega o elemento que tem o id
 
-#### getElementoById("")
+## getElementoById("")
 
 ~~~Javascript
 document.getElementoById("id")
@@ -28,7 +28,7 @@ document.getElementoById("id").value
 Podemos pegar ou atribuir.
 
 
-#### querySelector("")
+## querySelector("")
 
 ~~~Javascript
 document.querySelector("#id [name=exemplo] .class")
@@ -48,7 +48,7 @@ document.querySelectorAll("#id [name=exemplo]:checked")
 
 Caso queria busca o elemento que foi marcado no form.
 
-#### Trabalhando com class("")
+## Trabalhando com class("")
 Um objeto é uma estancia ou representação de uma class.
 
 Depois de criar a `class Exemplo{}`, passar para o metodo `constructor(name ,email, pass)` as informações que ele vai receber e passar os valores para o `this.`
@@ -68,7 +68,7 @@ var objectExemple = new ExemploUser(name, email, pass)
 `objectExemple` vai receber as informações que foram tratadas e passadas para o `this.` dentro da class.
 
 
-#### FileReader API
+## FileReader API
  Mais informações sobre [FileReader](https://developer.mozilla.org/pt-BR/docs/Web/API/FileReader)
 ~~~Javascript
     return new Promise((resolve,reject)=>{
@@ -87,7 +87,7 @@ var objectExemple = new ExemploUser(name, email, pass)
     } 
 ~~~
 
-#### Dataset API e JSON
+## Dataset API e JSON
 ~~~Javascript
  gerDataset(dataUser){ /* Recebemos um objeto */
        
@@ -103,7 +103,7 @@ var objectExemple = new ExemploUser(name, email, pass)
 }
 ~~~
 
-#### Object.assign
+## Object.assign
     Copia o valor de atributos de um objeto.
     Cria um objeto destino, retornando este objeto.
     todo objeto que vão ficando a direita, ele sobrescreve o que estão a esquerda.
