@@ -108,20 +108,25 @@ var objectExemple = new ExemploUser(name, email, pass)
 Copia o valor de atributos de um objeto.
 Cria um objeto destino, retornando este objeto.
 Todo objeto que vão ficando a direita, ele sobrescreve o que estão a esquerda.
-~~~Javascript
 
+~~~Javascript
     let valuesOld = {name: 'Maria', age:23, sex:'F'}
     let valuesNew = {name: 'Maria João', age:24}
 
     let result = Object.assign({}, userOld, valueNew)
     //console(result) {name: 'Maria João', age:24, sex:'F'}
-
 ~~~
+
 ### Confirm
 Abre uma janela de confirmação com ok e cancelar
-
 ~~~javascript
             if(confirm("Deseja realmente excluir?")){
                 // Emite um alerta de confirmação para executar o escopo
             }
+~~~
+## SessionStorage
+Permite gravar dados na sessão.
+SessionStorage.setItem quando fechar o navegador, deixa de existir.
+~~~javascript
+       
 ~~~
