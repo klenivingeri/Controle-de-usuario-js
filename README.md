@@ -127,6 +127,7 @@ Abre uma janela de confirmação com ok e cancelar
 ## SessionStorage
 Permite gravar dados na sessão.
 SessionStorage.setItem quando fechar o navegador, deixa de existir.
-~~~javascript
-       
-~~~
+
+
+## Dicas
+O UserController.js esta responsavel pela regra de negocio, o models/User.js esta responsavel por manipular os dados
