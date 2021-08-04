@@ -46,6 +46,8 @@ class UserController {
                     let user = new User();
 
                     user.loadFronJSON(result)
+
+                    user.save();
         
                     this.getTr(user, tr);
 
@@ -87,7 +89,7 @@ class UserController {
             this.getPhoto(this.formEl).then(
                 (content) => {
                     values.photo = content;
-                    this.insert(values)
+                    values.save();
                     this.addLine(values);
                     this.formEl.reset();
                     btn.disabled = false;  
@@ -221,14 +223,6 @@ class UserController {
             this.addLine(user)
 
         })
-
-    }
-
-    insert(data){
-
-        let users = this.getUsersStorage()
-        users.push(data)
-        localStorage.setItem("users", JSON.stringify(users))
 
     }
 
